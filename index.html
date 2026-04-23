@@ -1,0 +1,932 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>Shape IT — We design software specifically for your business needs.</title>
+<meta name="description" content="Shape IT is an engineering-led studio in Gangtok building production websites, mobile apps, AI integrations and growth systems for your business — whether you have an idea, are mid-build, or run an enterprise." />
+<meta name="theme-color" content="#1E40AF" />
+
+<!-- Open Graph -->
+<meta property="og:title" content="Shape IT — We design software specifically for your business needs." />
+<meta property="og:description" content="Production web apps, mobile apps, AI integrations and growth systems — designed specifically for your business." />
+<meta property="og:type" content="website" />
+<meta property="og:url" content="https://www.shapeit.in" />
+<meta property="og:image" content="logo.png" />
+
+<link rel="icon" href="logo.png" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet" />
+
+<script src="https://cdn.tailwindcss.com?plugins=forms,typography"></script>
+<script>
+  tailwind.config = {
+    theme: {
+      extend: {
+        fontFamily: {
+          sans: ['Inter', 'ui-sans-serif', 'system-ui'],
+          display: ['"Space Grotesk"', 'Inter', 'ui-sans-serif'],
+        },
+        colors: {
+          ink: '#0B1220',
+          cream: '#FFF8F1',
+          brand: {
+            50: '#EFF4FF', 500: '#2563EB', 600: '#1D4ED8', 700: '#1E40AF', 800: '#1E3A8A',
+          },
+          sun: { 400: '#FBBF24', 500: '#F59E0B', 600: '#D97706' },
+        },
+        boxShadow: {
+          glow: '0 20px 60px -20px rgba(30,64,175,0.35)',
+          ring: '0 0 0 1px rgba(15,23,42,0.06), 0 20px 40px -20px rgba(15,23,42,0.15)',
+        },
+        keyframes: {
+          blob: { '0%,100%': { transform: 'translate(0,0) scale(1)' }, '33%': { transform: 'translate(30px,-20px) scale(1.08)' }, '66%': { transform: 'translate(-20px,20px) scale(0.95)' } },
+          floaty: { '0%,100%': { transform: 'translateY(0)' }, '50%': { transform: 'translateY(-8px)' } },
+          sheen: { '0%': { backgroundPosition: '-200% 0' }, '100%': { backgroundPosition: '200% 0' } },
+          marquee: { '0%': { transform: 'translateX(0)' }, '100%': { transform: 'translateX(-50%)' } },
+          pulseRing: { '0%': { transform: 'scale(.8)', opacity: '0.6' }, '100%': { transform: 'scale(2.2)', opacity: '0' } },
+          rise: { '0%': { opacity: '0', transform: 'translateY(14px)' }, '100%': { opacity: '1', transform: 'translateY(0)' } },
+        },
+        animation: {
+          blob: 'blob 14s ease-in-out infinite',
+          floaty: 'floaty 5s ease-in-out infinite',
+          sheen: 'sheen 3s linear infinite',
+          marquee: 'marquee 30s linear infinite',
+          pulseRing: 'pulseRing 2.2s cubic-bezier(.2,.7,.2,1) infinite',
+          rise: 'rise .7s ease-out both',
+        },
+      },
+    },
+  };
+</script>
+
+<style>
+  html { scroll-behavior: smooth; }
+  body { font-family: 'Inter', system-ui, sans-serif; }
+  .font-display { font-family: 'Space Grotesk', 'Inter', sans-serif; letter-spacing: -0.02em; }
+
+  /* Aurora background */
+  .aurora::before,
+  .aurora::after {
+    content: "";
+    position: absolute;
+    inset: -20% -10% auto -10%;
+    height: 70%;
+    filter: blur(70px);
+    opacity: .55;
+    pointer-events: none;
+    z-index: 0;
+    background:
+      radial-gradient(40% 60% at 20% 30%, #93C5FD 0%, transparent 60%),
+      radial-gradient(35% 55% at 80% 20%, #FBBF24 0%, transparent 60%),
+      radial-gradient(50% 60% at 50% 80%, #2563EB 0%, transparent 60%);
+    animation: blob 18s ease-in-out infinite;
+  }
+  .aurora::after {
+    animation-delay: -6s;
+    opacity: .35;
+    transform: translateY(10%);
+  }
+
+  /* Grid backdrop */
+  .grid-bg {
+    background-image:
+      linear-gradient(to right, rgba(15,23,42,.06) 1px, transparent 1px),
+      linear-gradient(to bottom, rgba(15,23,42,.06) 1px, transparent 1px);
+    background-size: 44px 44px;
+    mask-image: radial-gradient(ellipse at center, #000 35%, transparent 75%);
+    -webkit-mask-image: radial-gradient(ellipse at center, #000 35%, transparent 75%);
+  }
+
+  /* Sheen on headline */
+  .sheen-text {
+    background: linear-gradient(90deg, #1E3A8A 0%, #2563EB 25%, #F59E0B 50%, #2563EB 75%, #1E3A8A 100%);
+    background-size: 200% 100%;
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    animation: sheen 6s linear infinite;
+  }
+
+  /* Marquee */
+  .marquee-track { width: max-content; animation: marquee 30s linear infinite; }
+
+  /* Noise overlay for depth */
+  .noise { position: absolute; inset: 0; pointer-events: none; opacity: .04; mix-blend-mode: multiply;
+    background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='160' height='160'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='2' stitchTiles='stitch'/></filter><rect width='100%' height='100%' filter='url(%23n)' opacity='.9'/></svg>");
+  }
+
+  /* Tilt card */
+  .tilt { transform-style: preserve-3d; transition: transform .4s cubic-bezier(.2,.8,.2,1); }
+  .tilt:hover { transform: perspective(1200px) rotateX(4deg) rotateY(-6deg) translateY(-4px); }
+
+  /* Gradient border card */
+  .gradient-border {
+    position: relative;
+    background: linear-gradient(#fff, #fff) padding-box,
+                linear-gradient(135deg, #1E40AF 0%, #F59E0B 100%) border-box;
+    border: 1px solid transparent;
+  }
+
+  /* Progressive reveal */
+  [data-reveal] { opacity: 0; transform: translateY(16px); transition: opacity .8s ease, transform .8s cubic-bezier(.2,.8,.2,1); }
+  [data-reveal].in { opacity: 1; transform: none; }
+
+  /* Pulse dot */
+  .pulse-dot { position: relative; }
+  .pulse-dot::before {
+    content: ""; position: absolute; inset: 0; border-radius: 9999px;
+    background: currentColor; animation: pulseRing 2.2s cubic-bezier(.2,.7,.2,1) infinite;
+  }
+
+  /* Headline underline mark */
+  .mark { position: relative; display: inline-block; }
+  .mark::after {
+    content: ""; position: absolute; left: -2%; right: -2%; bottom: 4px; height: 38%;
+    background: linear-gradient(90deg, rgba(251,191,36,.0) 0%, rgba(251,191,36,.85) 20%, rgba(251,191,36,.85) 80%, rgba(251,191,36,.0) 100%);
+    border-radius: 9999px; z-index: -1;
+  }
+
+  /* Portfolio hover arrow */
+  .arrow-hop { transition: transform .3s ease; }
+  .group:hover .arrow-hop { transform: translateX(4px); }
+
+  /* Button glow */
+  .btn-glow { box-shadow: 0 10px 30px -10px rgba(37,99,235,.55), inset 0 1px 0 rgba(255,255,255,.2); }
+  .btn-glow:hover { box-shadow: 0 14px 40px -10px rgba(37,99,235,.7); }
+
+  @media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after { animation: none !important; transition: none !important; }
+  }
+</style>
+</head>
+<body class="bg-cream text-ink antialiased selection:bg-sun-400/60">
+
+<!-- Skip link -->
+<a href="#main" class="sr-only focus:not-sr-only focus:fixed focus:top-3 focus:left-3 focus:z-50 focus:rounded-full focus:bg-ink focus:px-4 focus:py-2 focus:text-white">Skip to content</a>
+
+<!-- ============ NAV ============ -->
+<header class="sticky top-0 z-40 w-full border-b border-slate-200/60 bg-cream/80 backdrop-blur-md">
+  <div class="mx-auto flex max-w-7xl items-center justify-between px-5 py-3.5 lg:px-8">
+    <a href="#" class="flex items-center gap-2">
+      <img src="logo.png" alt="Shape IT logo" class="h-9 w-auto rounded-lg" />
+    </a>
+    <nav class="hidden items-center gap-8 md:flex">
+      <a href="#services" class="text-sm font-medium text-slate-700 transition hover:text-ink">Services</a>
+      <a href="#work" class="text-sm font-medium text-slate-700 transition hover:text-ink">Work</a>
+      <a href="#process" class="text-sm font-medium text-slate-700 transition hover:text-ink">Process</a>
+      <a href="#testimonials" class="text-sm font-medium text-slate-700 transition hover:text-ink">Testimonials</a>
+      <a href="#contact" class="text-sm font-medium text-slate-700 transition hover:text-ink">Contact</a>
+    </nav>
+    <div class="hidden items-center gap-3 md:flex">
+      <a href="tel:+918101652485" class="inline-flex items-center gap-2 text-sm font-semibold text-ink hover:text-brand-700">
+        <svg class="h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6A19.79 19.79 0 0 1 2.12 4.18 2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.12.96.34 1.9.66 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.23a2 2 0 0 1 2.11-.45c.91.32 1.85.54 2.81.66A2 2 0 0 1 22 16.92z"/></svg>
+        +91 81016 52485
+      </a>
+      <a href="https://wa.me/918101652485?text=Hi%20Shape%20IT%2C%20I%27d%20like%20to%20discuss%20a%20project."
+         class="group inline-flex items-center gap-2 rounded-full bg-gradient-to-br from-brand-700 to-brand-500 px-5 py-2.5 text-sm font-semibold text-white btn-glow transition">
+        Start a project
+        <svg class="h-4 w-4 arrow-hop" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 5l7 7-7 7"/></svg>
+      </a>
+    </div>
+    <button id="burger" class="md:hidden" aria-label="Menu">
+      <svg class="h-6 w-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 6h18M3 12h18M3 18h18"/></svg>
+    </button>
+  </div>
+  <div id="mobile" class="hidden border-t border-slate-200 bg-cream md:hidden">
+    <div class="flex flex-col gap-4 px-5 py-5">
+      <a href="#services" class="text-sm font-medium">Services</a>
+      <a href="#work" class="text-sm font-medium">Work</a>
+      <a href="#process" class="text-sm font-medium">Process</a>
+      <a href="#testimonials" class="text-sm font-medium">Testimonials</a>
+      <a href="#contact" class="text-sm font-medium">Contact</a>
+      <a href="https://wa.me/918101652485" class="mt-1 rounded-full bg-brand-700 px-5 py-3 text-center text-sm font-semibold text-white">WhatsApp us</a>
+    </div>
+  </div>
+</header>
+
+<main id="main">
+
+  <!-- ============ HERO ============ -->
+  <section class="relative isolate overflow-hidden aurora">
+    <div class="grid-bg absolute inset-0 -z-10"></div>
+    <div class="noise"></div>
+
+    <!-- Floating chips -->
+    <div aria-hidden="true" class="pointer-events-none absolute left-[6%] top-28 hidden animate-floaty rounded-2xl border border-white/60 bg-white/70 px-3 py-2 text-xs font-semibold text-slate-700 shadow-ring backdrop-blur lg:flex">
+      <span class="mr-2 inline-flex h-2 w-2 rounded-full bg-emerald-500"></span>
+      3 five-star client reviews
+    </div>
+    <div aria-hidden="true" class="pointer-events-none absolute right-[6%] top-40 hidden animate-floaty rounded-2xl border border-white/60 bg-white/70 px-3 py-2 text-xs font-semibold text-slate-700 shadow-ring backdrop-blur lg:flex" style="animation-delay:-2s">
+      🏥 HMS · Role-based access
+    </div>
+    <div aria-hidden="true" class="pointer-events-none absolute bottom-28 left-[8%] hidden animate-floaty rounded-2xl border border-white/60 bg-white/70 px-3 py-2 text-xs font-semibold text-slate-700 shadow-ring backdrop-blur lg:flex" style="animation-delay:-4s">
+      🤖 RAG chatbot · PG accommodation
+    </div>
+
+    <div class="relative mx-auto max-w-7xl px-5 pb-24 pt-16 lg:px-8 lg:pb-32 lg:pt-24">
+      <!-- trust pills -->
+      <div data-reveal class="mx-auto flex max-w-3xl flex-wrap items-center justify-center gap-2">
+        <span class="inline-flex items-center gap-2 rounded-full border border-emerald-200 bg-emerald-50/80 px-3 py-1 text-xs font-semibold text-emerald-800 backdrop-blur">
+          <span class="relative inline-flex h-2 w-2"><span class="pulse-dot absolute inline-flex h-full w-full rounded-full bg-emerald-500 text-emerald-500"></span><span class="relative inline-flex h-2 w-2 rounded-full bg-emerald-500"></span></span>
+          Taking on 2 new builds this quarter
+        </span>
+        <span class="inline-flex items-center gap-2 rounded-full border border-brand-200 bg-brand-50/80 px-3 py-1 text-xs font-semibold text-brand-800 backdrop-blur">
+          📍 Gangtok · Sikkim · India
+        </span>
+        <span class="inline-flex items-center gap-2 rounded-full border border-slate-200 bg-white/70 px-3 py-1 text-xs font-semibold text-slate-700 backdrop-blur">
+          🌍 Serving India · US · EU · Dubai
+        </span>
+      </div>
+
+      <h1 data-reveal class="mx-auto mt-8 max-w-5xl text-center font-display text-[2.6rem] font-bold leading-[1.02] tracking-tight text-ink sm:text-6xl lg:text-7xl xl:text-[5.2rem]">
+        We design software<br class="hidden sm:block" />
+        <span class="sheen-text">specifically for your business needs.</span>
+      </h1>
+
+      <p data-reveal class="mx-auto mt-6 max-w-2xl text-center text-base leading-relaxed text-slate-600 sm:text-lg">
+        Shape IT is an engineering-led studio building <span class="font-semibold text-ink">production web apps, mobile apps and AI integrations</span> for your business, whether you have an idea or already in the middle, or you already have a enterprise. <span class="mark">We will provide the solution.</span>
+      </p>
+
+      <!-- CTAs -->
+      <div data-reveal class="mt-10 flex flex-col items-center justify-center gap-3 sm:flex-row sm:gap-4">
+        <a href="https://wa.me/918101652485?text=Hi%20Shape%20IT%2C%20I%27d%20like%20to%20discuss%20a%20project."
+           class="group inline-flex items-center justify-center gap-2 rounded-full bg-gradient-to-br from-brand-700 to-brand-500 px-7 py-4 text-sm font-bold text-white btn-glow sm:text-base">
+          <svg class="h-5 w-5" viewBox="0 0 24 24" fill="currentColor"><path d="M20.52 3.48A11.8 11.8 0 0 0 12.06 0C5.5 0 .17 5.33.17 11.9a11.87 11.87 0 0 0 1.6 5.94L0 24l6.3-1.65a11.86 11.86 0 0 0 5.76 1.47h.01c6.56 0 11.89-5.33 11.89-11.9a11.8 11.8 0 0 0-3.44-8.44zM12.07 21.6a9.7 9.7 0 0 1-4.96-1.36l-.36-.21-3.74.98 1-3.64-.23-.37a9.73 9.73 0 0 1-1.5-5.2c0-5.38 4.38-9.76 9.78-9.76 2.61 0 5.07 1.02 6.91 2.86a9.69 9.69 0 0 1 2.87 6.91c-.01 5.38-4.39 9.79-9.77 9.79zm5.36-7.3c-.3-.15-1.74-.86-2-.96s-.47-.15-.66.15-.76.95-.93 1.15-.34.22-.63.07a7.96 7.96 0 0 1-3.98-3.48c-.3-.52.3-.48.86-1.59.1-.22.05-.4-.03-.55l-.92-2.22c-.24-.57-.49-.5-.67-.5h-.57c-.2 0-.52.07-.8.37s-1.06 1.03-1.06 2.52 1.09 2.93 1.24 3.13c.15.2 2.13 3.25 5.17 4.56.72.31 1.29.5 1.73.65.73.23 1.39.2 1.91.12.58-.09 1.74-.71 1.99-1.4.25-.69.25-1.28.17-1.4-.07-.12-.26-.2-.55-.34z"/></svg>
+          Start a project on WhatsApp
+          <svg class="h-4 w-4 arrow-hop" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M5 12h14M13 5l7 7-7 7"/></svg>
+        </a>
+        <a href="tel:+918101652485" class="inline-flex items-center justify-center gap-2 rounded-full border border-slate-300 bg-white/70 px-7 py-4 text-sm font-semibold text-ink backdrop-blur transition hover:border-ink hover:bg-ink hover:text-white sm:text-base">
+          <svg class="h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6A19.79 19.79 0 0 1 2.12 4.18 2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.12.96.34 1.9.66 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.23a2 2 0 0 1 2.11-.45c.91.32 1.85.54 2.81.66A2 2 0 0 1 22 16.92z"/></svg>
+          Call +91 81016 52485
+        </a>
+      </div>
+      <p data-reveal class="mt-4 text-center text-xs text-slate-500">No forms. Talk to the engineer directly — Mon–Fri · 9 AM–6 PM IST.</p>
+
+      <!-- Stats strip -->
+      <div data-reveal class="mx-auto mt-14 grid max-w-5xl grid-cols-2 gap-y-6 overflow-hidden rounded-3xl border border-slate-200/80 bg-white/70 p-6 shadow-ring backdrop-blur-md sm:grid-cols-4 sm:divide-x sm:divide-slate-200 sm:gap-y-0">
+        <div class="px-2 text-center sm:px-6">
+          <div class="font-display text-3xl font-bold text-ink sm:text-4xl">6</div>
+          <div class="mt-1 text-[11px] font-semibold uppercase tracking-widest text-slate-500">Reference builds</div>
+        </div>
+        <div class="px-2 text-center sm:px-6">
+          <div class="font-display text-3xl font-bold text-ink sm:text-4xl">3</div>
+          <div class="mt-1 text-[11px] font-semibold uppercase tracking-widest text-slate-500">Happy clients</div>
+        </div>
+        <div class="px-2 text-center sm:px-6">
+          <div class="font-display text-3xl font-bold text-ink sm:text-4xl">5★</div>
+          <div class="mt-1 text-[11px] font-semibold uppercase tracking-widest text-slate-500">Testimonials</div>
+        </div>
+        <div class="px-2 text-center sm:px-6">
+          <div class="font-display text-3xl font-bold text-ink sm:text-4xl">100%</div>
+          <div class="mt-1 text-[11px] font-semibold uppercase tracking-widest text-slate-500">Code ownership</div>
+        </div>
+      </div>
+
+      <!-- Tech marquee -->
+      <div class="mt-14">
+        <p class="text-center text-[11px] font-semibold uppercase tracking-[0.22em] text-slate-500">Built with production stacks</p>
+        <div class="relative mt-5 overflow-hidden [mask-image:linear-gradient(to_right,transparent,black_15%,black_85%,transparent)]">
+          <div class="marquee-track flex gap-12 whitespace-nowrap text-lg font-semibold text-slate-700/90">
+            <span>React</span><span class="text-slate-300">◆</span>
+            <span>Django</span><span class="text-slate-300">◆</span>
+            <span>PostgreSQL</span><span class="text-slate-300">◆</span>
+            <span>Flutter</span><span class="text-slate-300">◆</span>
+            <span>React&nbsp;Native</span><span class="text-slate-300">◆</span>
+            <span>LLM · RAG</span><span class="text-slate-300">◆</span>
+            <span>TailwindCSS</span><span class="text-slate-300">◆</span>
+            <span>Figma</span><span class="text-slate-300">◆</span>
+            <!-- duplicate for seamless loop -->
+            <span>React</span><span class="text-slate-300">◆</span>
+            <span>Django</span><span class="text-slate-300">◆</span>
+            <span>PostgreSQL</span><span class="text-slate-300">◆</span>
+            <span>Flutter</span><span class="text-slate-300">◆</span>
+            <span>React&nbsp;Native</span><span class="text-slate-300">◆</span>
+            <span>LLM · RAG</span><span class="text-slate-300">◆</span>
+            <span>TailwindCSS</span><span class="text-slate-300">◆</span>
+            <span>Figma</span><span class="text-slate-300">◆</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ VALUE STRIP (Why Shape IT) ============ -->
+  <section class="relative bg-white py-16 sm:py-20">
+    <div class="mx-auto max-w-7xl px-5 lg:px-8">
+      <div data-reveal class="mx-auto max-w-3xl text-center">
+        <p class="text-xs font-semibold uppercase tracking-[0.22em] text-brand-700">Why Shape IT</p>
+        <h2 class="mt-3 font-display text-3xl font-bold tracking-tight text-ink sm:text-4xl lg:text-5xl">
+          Everyone sells AI. We <span class="mark">ship systems</span>.
+        </h2>
+        <p class="mt-4 text-base leading-relaxed text-slate-600 sm:text-lg">
+          The market is full of decks, demos, and agencies that quote low and deliver nothing. We're small, fast, and engineering-led — the same people who write your code write your content. It's why both actually work.
+        </p>
+      </div>
+
+      <div class="mt-12 grid gap-5 md:grid-cols-3">
+        <div data-reveal class="gradient-border rounded-2xl p-6">
+          <div class="flex items-center gap-3">
+            <div class="inline-flex h-10 w-10 items-center justify-center rounded-xl bg-brand-50 text-brand-700">
+              <svg class="h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2 3 7v6c0 5 4 9 9 9s9-4 9-9V7l-9-5Z"/></svg>
+            </div>
+            <h3 class="font-display text-lg font-semibold text-ink">Engineer-to-founder</h3>
+          </div>
+          <p class="mt-3 text-sm leading-relaxed text-slate-600">No account managers, no sales script. You talk to the person writing the code. Decisions happen on the call.</p>
+        </div>
+        <div data-reveal class="gradient-border rounded-2xl p-6">
+          <div class="flex items-center gap-3">
+            <div class="inline-flex h-10 w-10 items-center justify-center rounded-xl bg-sun-500/10 text-sun-600">
+              <svg class="h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
+            </div>
+            <h3 class="font-display text-lg font-semibold text-ink">Fixed scope. Fixed price.</h3>
+          </div>
+          <p class="mt-3 text-sm leading-relaxed text-slate-600">Clear deliverables, weekly check-ins, and no surprise invoices. If it's not scoped, it's not charged.</p>
+        </div>
+        <div data-reveal class="gradient-border rounded-2xl p-6">
+          <div class="flex items-center gap-3">
+            <div class="inline-flex h-10 w-10 items-center justify-center rounded-xl bg-slate-100 text-ink">
+              <svg class="h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M9 9h6v6H9z"/></svg>
+            </div>
+            <h3 class="font-display text-lg font-semibold text-ink">You own everything</h3>
+          </div>
+          <p class="mt-3 text-sm leading-relaxed text-slate-600">Source code, repos, design files, deployments — 100% handed over. No lock-in, no agency hostage situation.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ SERVICES ============ -->
+  <section id="services" class="relative bg-[#FFF8F1] py-24">
+    <div class="mx-auto max-w-7xl px-5 lg:px-8">
+      <div data-reveal class="mx-auto max-w-2xl text-center">
+        <p class="text-xs font-semibold uppercase tracking-[0.22em] text-brand-700">What we do</p>
+        <h2 class="mt-3 font-display text-3xl font-bold tracking-tight text-ink sm:text-4xl lg:text-5xl">Three practices. One team. Shipped work.</h2>
+        <p class="mt-4 text-base leading-relaxed text-slate-600 sm:text-lg">We don't hand you off to six freelancers. The same small team that writes your code writes your ads — which is exactly why both work.</p>
+      </div>
+
+      <div class="mt-14 grid gap-6 md:grid-cols-3">
+        <!-- Software -->
+        <article data-reveal class="group relative overflow-hidden rounded-3xl border border-slate-200 bg-white p-7 transition duration-500 hover:-translate-y-1 hover:shadow-2xl">
+          <div class="absolute inset-x-0 top-0 h-1 bg-gradient-to-r from-brand-700 via-brand-500 to-sun-500 opacity-80"></div>
+          <div class="inline-flex h-12 w-12 items-center justify-center rounded-xl bg-brand-50 text-brand-700 transition group-hover:bg-brand-700 group-hover:text-white">
+            <svg class="h-6 w-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg>
+          </div>
+          <h3 class="mt-6 font-display text-xl font-bold text-ink">Software Engineering</h3>
+          <p class="mt-1 text-sm font-semibold text-slate-500">Websites · web apps · mobile apps</p>
+          <p class="mt-4 text-sm leading-relaxed text-slate-600">Production systems in React, Django, PostgreSQL, Flutter and React Native. Static marketing sites, on-premise web apps, Android builds — version-controlled, documented, fully owned by you.</p>
+          <ul class="mt-5 space-y-2 text-sm text-slate-700">
+            <li class="flex items-center gap-2"><span class="h-1.5 w-1.5 rounded-full bg-brand-500"></span>Responsive web apps</li>
+            <li class="flex items-center gap-2"><span class="h-1.5 w-1.5 rounded-full bg-brand-500"></span>Flutter / React Native apps</li>
+            <li class="flex items-center gap-2"><span class="h-1.5 w-1.5 rounded-full bg-brand-500"></span>APIs, databases, deployments</li>
+          </ul>
+          <a href="https://wa.me/918101652485" class="mt-6 inline-flex items-center gap-1.5 text-sm font-semibold text-brand-700 hover:text-brand-800">Talk about this
+            <svg class="h-3.5 w-3.5 arrow-hop" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 5l7 7-7 7"/></svg>
+          </a>
+        </article>
+
+        <!-- AI -->
+        <article data-reveal class="group relative overflow-hidden rounded-3xl border border-slate-200 bg-white p-7 transition duration-500 hover:-translate-y-1 hover:shadow-2xl">
+          <div class="absolute inset-x-0 top-0 h-1 bg-gradient-to-r from-sun-500 via-rose-400 to-brand-500 opacity-80"></div>
+          <div class="inline-flex h-12 w-12 items-center justify-center rounded-xl bg-sun-500/10 text-sun-600 transition group-hover:bg-sun-500 group-hover:text-white">
+            <svg class="h-6 w-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 3l1.6 3.8L17.5 8l-3.9 1.2L12 13l-1.6-3.8L6.5 8l3.9-1.2L12 3Z"/><path d="M5 17l.8 2 2 .8-2 .8L5 22.6l-.8-2L2.2 20l2-.8L5 17Z"/></svg>
+          </div>
+          <h3 class="mt-6 font-display text-xl font-bold text-ink">AI Integration</h3>
+          <p class="mt-1 text-sm font-semibold text-slate-500">AI that earns its keep</p>
+          <p class="mt-4 text-sm leading-relaxed text-slate-600">Modern LLMs, RAG pipelines and chatbots wired into your existing product — support automation, document Q&amp;A, internal assistants. Only where it removes real cost or unlocks a real workflow.</p>
+          <ul class="mt-5 space-y-2 text-sm text-slate-700">
+            <li class="flex items-center gap-2"><span class="h-1.5 w-1.5 rounded-full bg-sun-500"></span>Chatbots &amp; assistants</li>
+            <li class="flex items-center gap-2"><span class="h-1.5 w-1.5 rounded-full bg-sun-500"></span>RAG over your own docs</li>
+            <li class="flex items-center gap-2"><span class="h-1.5 w-1.5 rounded-full bg-sun-500"></span>Workflow automation</li>
+          </ul>
+          <a href="https://wa.me/918101652485" class="mt-6 inline-flex items-center gap-1.5 text-sm font-semibold text-sun-600 hover:text-sun-700">Talk about this
+            <svg class="h-3.5 w-3.5 arrow-hop" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 5l7 7-7 7"/></svg>
+          </a>
+        </article>
+
+        <!-- Growth -->
+        <article data-reveal class="group relative overflow-hidden rounded-3xl border border-slate-200 bg-white p-7 transition duration-500 hover:-translate-y-1 hover:shadow-2xl">
+          <div class="absolute inset-x-0 top-0 h-1 bg-gradient-to-r from-slate-900 via-brand-700 to-slate-900 opacity-80"></div>
+          <div class="inline-flex h-12 w-12 items-center justify-center rounded-xl bg-slate-100 text-ink transition group-hover:bg-ink group-hover:text-white">
+            <svg class="h-6 w-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="22 7 13.5 15.5 8.5 10.5 2 17"/><polyline points="16 7 22 7 22 13"/></svg>
+          </div>
+          <h3 class="mt-6 font-display text-xl font-bold text-ink">Growth &amp; Content</h3>
+          <p class="mt-1 text-sm font-semibold text-slate-500">Marketing that compounds</p>
+          <p class="mt-4 text-sm leading-relaxed text-slate-600">Ads, graphics, video and content strategy — run as a measurable system, not a monthly deliverable dump. For clients who want their brand still earning attention six months from now.</p>
+          <ul class="mt-5 space-y-2 text-sm text-slate-700">
+            <li class="flex items-center gap-2"><span class="h-1.5 w-1.5 rounded-full bg-slate-900"></span>Performance ads</li>
+            <li class="flex items-center gap-2"><span class="h-1.5 w-1.5 rounded-full bg-slate-900"></span>Brand &amp; graphic design</li>
+            <li class="flex items-center gap-2"><span class="h-1.5 w-1.5 rounded-full bg-slate-900"></span>Content &amp; SEO strategy</li>
+          </ul>
+          <a href="https://wa.me/918101652485" class="mt-6 inline-flex items-center gap-1.5 text-sm font-semibold text-ink hover:text-brand-700">Talk about this
+            <svg class="h-3.5 w-3.5 arrow-hop" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 5l7 7-7 7"/></svg>
+          </a>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ PORTFOLIO ============ -->
+  <section id="work" class="relative bg-white py-24">
+    <div class="mx-auto max-w-7xl px-5 lg:px-8">
+      <div data-reveal class="flex flex-col items-start justify-between gap-6 md:flex-row md:items-end">
+        <div class="max-w-2xl">
+          <p class="text-xs font-semibold uppercase tracking-[0.22em] text-brand-700">Selected work</p>
+          <h2 class="mt-3 font-display text-3xl font-bold tracking-tight text-ink sm:text-4xl lg:text-5xl">Systems we've engineered.</h2>
+          <p class="mt-4 text-base leading-relaxed text-slate-600 sm:text-lg">Every project below was designed, coded and shipped in-house. Some are live with clients, some are productised and ready to white-label, some are in active development. Each one is a real system — not a template.</p>
+        </div>
+        <a href="https://wa.me/918101652485" class="inline-flex items-center gap-2 rounded-full border border-slate-200 bg-cream px-5 py-2.5 text-sm font-semibold text-brand-700 hover:border-brand-300 hover:bg-brand-50">
+          Request a full case study
+          <svg class="h-4 w-4 arrow-hop" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 5l7 7-7 7"/></svg>
+        </a>
+      </div>
+
+      <!-- FEATURED CASE STUDY — HMS Physiotherapy -->
+      <article data-reveal class="mt-12 grid overflow-hidden rounded-3xl border border-slate-200 bg-white shadow-ring lg:grid-cols-5">
+        <!-- Gallery (4 real screenshots) -->
+        <div class="relative lg:col-span-3">
+          <div class="relative aspect-[16/10] w-full overflow-hidden bg-slate-100">
+            <img id="hmsMain" src="screenshots_of_the_hms_physiotherapy/image1.png" alt="HMS Physiotherapy — dashboard" class="h-full w-full object-cover object-top transition duration-500" />
+            <div class="absolute left-4 top-4 inline-flex items-center gap-1.5 rounded-full bg-white/90 px-3 py-1 text-[11px] font-bold text-ink shadow-sm ring-1 ring-slate-200 backdrop-blur">
+              <span class="h-1.5 w-1.5 rounded-full bg-emerald-500"></span>Flagship case study
+            </div>
+            <div class="absolute inset-x-0 bottom-0 h-24 bg-gradient-to-t from-black/50 to-transparent"></div>
+            <div class="absolute bottom-3 left-4 right-4 flex items-center justify-between text-xs font-semibold text-white/90">
+              <span>Feb 2025 · Locally hosted for department</span>
+              <span>4 screenshots</span>
+            </div>
+          </div>
+          <!-- Thumbnail strip -->
+          <div class="grid grid-cols-4 gap-2 p-3">
+            <button type="button" data-thumb="screenshots_of_the_hms_physiotherapy/image1.png" class="hms-thumb group relative overflow-hidden rounded-xl ring-2 ring-brand-600 focus:outline-none">
+              <img src="screenshots_of_the_hms_physiotherapy/image1.png" alt="Screen 1" class="aspect-[16/10] w-full object-cover object-top" />
+            </button>
+            <button type="button" data-thumb="screenshots_of_the_hms_physiotherapy/image2.png" class="hms-thumb group relative overflow-hidden rounded-xl ring-2 ring-transparent hover:ring-brand-500 focus:outline-none">
+              <img src="screenshots_of_the_hms_physiotherapy/image2.png" alt="Screen 2" class="aspect-[16/10] w-full object-cover object-top" />
+            </button>
+            <button type="button" data-thumb="screenshots_of_the_hms_physiotherapy/image3.png" class="hms-thumb group relative overflow-hidden rounded-xl ring-2 ring-transparent hover:ring-brand-500 focus:outline-none">
+              <img src="screenshots_of_the_hms_physiotherapy/image3.png" alt="Screen 3" class="aspect-[16/10] w-full object-cover object-top" />
+            </button>
+            <button type="button" data-thumb="screenshots_of_the_hms_physiotherapy/image4.png" class="hms-thumb group relative overflow-hidden rounded-xl ring-2 ring-transparent hover:ring-brand-500 focus:outline-none">
+              <img src="screenshots_of_the_hms_physiotherapy/image4.png" alt="Screen 4" class="aspect-[16/10] w-full object-cover object-top" />
+            </button>
+          </div>
+        </div>
+        <!-- Body -->
+        <div class="flex flex-col justify-center p-8 lg:col-span-2 lg:p-10">
+          <p class="text-xs font-semibold uppercase tracking-[0.18em] text-brand-700">Healthcare · Full-stack Web</p>
+          <h3 class="mt-2 font-display text-2xl font-bold text-ink sm:text-3xl">Physiotherapy Hospital Management System</h3>
+          <p class="mt-4 text-sm leading-relaxed text-slate-600">Role-based HMS built for a physiotherapy department. Doctors, admins and front-desk staff each get scoped dashboards — patient records, CR numbers, diagnosis logs, old-case iteration, and follow-up tracking. Locally hosted for internal use.</p>
+          <ul class="mt-5 space-y-2 text-sm text-slate-700">
+            <li class="flex items-start gap-2"><svg class="mt-0.5 h-4 w-4 flex-none text-brand-700" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>Role-based authentication (doctor / admin / desk)</li>
+            <li class="flex items-start gap-2"><svg class="mt-0.5 h-4 w-4 flex-none text-brand-700" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>CR-number based patient lookup</li>
+            <li class="flex items-start gap-2"><svg class="mt-0.5 h-4 w-4 flex-none text-brand-700" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>Old-case iteration &amp; progress tracking</li>
+            <li class="flex items-start gap-2"><svg class="mt-0.5 h-4 w-4 flex-none text-brand-700" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>Designed &amp; developed fully in-house</li>
+          </ul>
+          <div class="mt-6 flex flex-wrap gap-1.5">
+            <span class="rounded-md bg-slate-100 px-2 py-1 text-[11px] font-semibold text-slate-700">React</span>
+            <span class="rounded-md bg-slate-100 px-2 py-1 text-[11px] font-semibold text-slate-700">Django</span>
+            <span class="rounded-md bg-slate-100 px-2 py-1 text-[11px] font-semibold text-slate-700">PostgreSQL</span>
+            <span class="rounded-md bg-slate-100 px-2 py-1 text-[11px] font-semibold text-slate-700">Role-based Auth</span>
+          </div>
+          <a href="https://wa.me/918101652485?text=Hi%20Shape%20IT%2C%20I%27d%20like%20an%20HMS%20like%20the%20physiotherapy%20one." class="mt-7 inline-flex items-center gap-2 self-start rounded-full bg-ink px-5 py-3 text-sm font-semibold text-white transition hover:bg-brand-700">
+            Deploy this for my clinic
+            <svg class="h-4 w-4 arrow-hop" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 5l7 7-7 7"/></svg>
+          </a>
+        </div>
+      </article>
+
+      <!-- OTHER BUILDS -->
+      <div class="mt-10">
+        <div data-reveal class="flex items-end justify-between gap-4">
+          <div>
+            <p class="text-xs font-semibold uppercase tracking-[0.22em] text-brand-700">More from the workshop</p>
+            <h3 class="mt-2 font-display text-2xl font-bold text-ink sm:text-3xl">Reference builds, ready to white-label.</h3>
+          </div>
+          <p class="hidden max-w-sm text-xs text-slate-500 sm:block">These are products we've already engineered end-to-end. Live screenshots available on request — some are currently kept in private repositories for client readiness.</p>
+        </div>
+
+        <div class="mt-6 grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
+          <!-- Skills Marketplace -->
+          <article data-reveal class="group relative flex flex-col overflow-hidden rounded-3xl border border-slate-200 bg-white transition duration-500 hover:-translate-y-1 hover:shadow-2xl">
+            <div class="relative aspect-[16/10] w-full overflow-hidden bg-gradient-to-br from-brand-600 via-brand-500 to-indigo-500">
+              <div class="absolute inset-0 [background-image:linear-gradient(to_right,rgba(255,255,255,.1)_1px,transparent_1px),linear-gradient(to_bottom,rgba(255,255,255,.1)_1px,transparent_1px)] [background-size:28px_28px]"></div>
+              <div class="absolute inset-0 flex items-center justify-center">
+                <div class="flex h-20 w-20 items-center justify-center rounded-2xl bg-white/15 ring-1 ring-white/30 backdrop-blur">
+                  <svg class="h-10 w-10 text-white" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="9" cy="7" r="4"/><path d="M3 21v-2a4 4 0 0 1 4-4h4a4 4 0 0 1 4 4v2"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/><path d="M21 21v-2a4 4 0 0 0-3-3.87"/></svg>
+                </div>
+              </div>
+              <div class="absolute left-4 top-4 inline-flex items-center gap-1.5 rounded-full bg-white/90 px-3 py-1 text-[11px] font-bold text-ink shadow-sm ring-1 ring-slate-200 backdrop-blur">
+                <span class="h-1.5 w-1.5 rounded-full bg-emerald-500"></span>Feb 2026 · Shippable
+              </div>
+            </div>
+            <div class="flex flex-1 flex-col p-6">
+              <p class="text-xs font-semibold uppercase tracking-[0.14em] text-brand-700">Marketplace · Web + Android</p>
+              <h4 class="mt-2 font-display text-lg font-bold text-ink">LinkedIn-style Skills Marketplace</h4>
+              <p class="mt-3 text-sm leading-relaxed text-slate-600">Full-stack two-sided marketplace with auth, profiles, listings, search and a packaged Android APK. Ready to white-label for freelance, coaching or home-services verticals.</p>
+              <div class="mt-5 flex flex-wrap gap-1.5">
+                <span class="rounded-md bg-slate-100 px-2 py-1 text-[11px] font-semibold text-slate-700">React</span>
+                <span class="rounded-md bg-slate-100 px-2 py-1 text-[11px] font-semibold text-slate-700">Django</span>
+                <span class="rounded-md bg-slate-100 px-2 py-1 text-[11px] font-semibold text-slate-700">Android APK</span>
+              </div>
+            </div>
+          </article>
+
+          <!-- AI Chatbot -->
+          <article data-reveal class="group relative flex flex-col overflow-hidden rounded-3xl border border-slate-200 bg-white transition duration-500 hover:-translate-y-1 hover:shadow-2xl">
+            <div class="relative aspect-[16/10] w-full overflow-hidden bg-gradient-to-br from-sun-500 via-orange-500 to-rose-500">
+              <div class="absolute inset-0 [background-image:linear-gradient(to_right,rgba(255,255,255,.1)_1px,transparent_1px),linear-gradient(to_bottom,rgba(255,255,255,.1)_1px,transparent_1px)] [background-size:28px_28px]"></div>
+              <div class="absolute inset-0 flex items-center justify-center">
+                <div class="flex h-20 w-20 items-center justify-center rounded-2xl bg-white/15 ring-1 ring-white/30 backdrop-blur">
+                  <svg class="h-10 w-10 text-white" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="11" width="18" height="10" rx="2"/><circle cx="12" cy="5" r="2"/><path d="M12 7v4"/><line x1="8" y1="16" x2="8" y2="16"/><line x1="16" y1="16" x2="16" y2="16"/></svg>
+                </div>
+              </div>
+              <div class="absolute left-4 top-4 inline-flex items-center gap-1.5 rounded-full bg-white/90 px-3 py-1 text-[11px] font-bold text-ink shadow-sm ring-1 ring-slate-200 backdrop-blur">
+                <span class="h-1.5 w-1.5 rounded-full bg-emerald-500"></span>Jul 2025 · Demo-ready
+              </div>
+            </div>
+            <div class="flex flex-1 flex-col p-6">
+              <p class="text-xs font-semibold uppercase tracking-[0.14em] text-brand-700">AI Integration · Automation</p>
+              <h4 class="mt-2 font-display text-lg font-bold text-ink">AI Query Chatbot — PG Accommodation</h4>
+              <p class="mt-3 text-sm leading-relaxed text-slate-600">LLM-backed chatbot trained on a paying-guest accommodation's FAQ, rooms, rent and house rules. Slashes repeat-query load for the owner. Pattern reusable for hotels, clinics, schools.</p>
+              <div class="mt-5 flex flex-wrap gap-1.5">
+                <span class="rounded-md bg-slate-100 px-2 py-1 text-[11px] font-semibold text-slate-700">LLM</span>
+                <span class="rounded-md bg-slate-100 px-2 py-1 text-[11px] font-semibold text-slate-700">RAG</span>
+                <span class="rounded-md bg-slate-100 px-2 py-1 text-[11px] font-semibold text-slate-700">Python</span>
+              </div>
+            </div>
+          </article>
+
+          <!-- Travel -->
+          <article data-reveal class="group relative flex flex-col overflow-hidden rounded-3xl border border-slate-200 bg-white transition duration-500 hover:-translate-y-1 hover:shadow-2xl">
+            <div class="relative aspect-[16/10] w-full overflow-hidden bg-gradient-to-br from-emerald-500 via-teal-500 to-brand-500">
+              <div class="absolute inset-0 [background-image:linear-gradient(to_right,rgba(255,255,255,.1)_1px,transparent_1px),linear-gradient(to_bottom,rgba(255,255,255,.1)_1px,transparent_1px)] [background-size:28px_28px]"></div>
+              <div class="absolute inset-0 flex items-center justify-center">
+                <div class="flex h-20 w-20 items-center justify-center rounded-2xl bg-white/15 ring-1 ring-white/30 backdrop-blur">
+                  <svg class="h-10 w-10 text-white" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M2 12h20"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
+                </div>
+              </div>
+              <div class="absolute left-4 top-4 inline-flex items-center gap-1.5 rounded-full bg-white/90 px-3 py-1 text-[11px] font-bold text-ink shadow-sm ring-1 ring-slate-200 backdrop-blur">
+                <span class="h-1.5 w-1.5 rounded-full bg-amber-500"></span>In development
+              </div>
+            </div>
+            <div class="flex flex-1 flex-col p-6">
+              <p class="text-xs font-semibold uppercase tracking-[0.14em] text-brand-700">Marketplace · Travel</p>
+              <h4 class="mt-2 font-display text-lg font-bold text-ink">Travel Booking Platform</h4>
+              <p class="mt-3 text-sm leading-relaxed text-slate-600">Full travel website covering itinerary discovery, vendor onboarding, bookings and payments. Reference build for any aggregator-style platform.</p>
+              <div class="mt-5 flex flex-wrap gap-1.5">
+                <span class="rounded-md bg-slate-100 px-2 py-1 text-[11px] font-semibold text-slate-700">React</span>
+                <span class="rounded-md bg-slate-100 px-2 py-1 text-[11px] font-semibold text-slate-700">Django</span>
+                <span class="rounded-md bg-slate-100 px-2 py-1 text-[11px] font-semibold text-slate-700">Payments</span>
+              </div>
+            </div>
+          </article>
+
+          <!-- Mobile trio -->
+          <article data-reveal class="group relative flex flex-col overflow-hidden rounded-3xl border border-slate-200 bg-white transition duration-500 hover:-translate-y-1 hover:shadow-2xl">
+            <div class="relative aspect-[16/10] w-full overflow-hidden bg-gradient-to-br from-fuchsia-500 via-purple-500 to-brand-600">
+              <div class="absolute inset-0 [background-image:linear-gradient(to_right,rgba(255,255,255,.1)_1px,transparent_1px),linear-gradient(to_bottom,rgba(255,255,255,.1)_1px,transparent_1px)] [background-size:28px_28px]"></div>
+              <div class="absolute inset-0 flex items-center justify-center">
+                <div class="flex h-20 w-20 items-center justify-center rounded-2xl bg-white/15 ring-1 ring-white/30 backdrop-blur">
+                  <svg class="h-10 w-10 text-white" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="7" y="2" width="10" height="20" rx="2"/><path d="M11 18h2"/></svg>
+                </div>
+              </div>
+              <div class="absolute left-4 top-4 inline-flex items-center gap-1.5 rounded-full bg-white/90 px-3 py-1 text-[11px] font-bold text-ink shadow-sm ring-1 ring-slate-200 backdrop-blur">
+                <span class="h-1.5 w-1.5 rounded-full bg-emerald-500"></span>Dec 2025 · Jan 2026
+              </div>
+            </div>
+            <div class="flex flex-1 flex-col p-6">
+              <p class="text-xs font-semibold uppercase tracking-[0.14em] text-brand-700">3 Mobile Apps · Flutter &amp; RN</p>
+              <h4 class="mt-2 font-display text-lg font-bold text-ink">Homestay · Survey · Mental Health</h4>
+              <p class="mt-3 text-sm leading-relaxed text-slate-600">A suite of three native-quality mobile apps built as vertical reference builds: homestay booking, dynamic-form survey collection and a mental-health check-in companion. White-label-ready in weeks.</p>
+              <div class="mt-5 flex flex-wrap gap-1.5">
+                <span class="rounded-md bg-slate-100 px-2 py-1 text-[11px] font-semibold text-slate-700">Flutter</span>
+                <span class="rounded-md bg-slate-100 px-2 py-1 text-[11px] font-semibold text-slate-700">React Native</span>
+              </div>
+            </div>
+          </article>
+
+          <!-- Upride -->
+          <article data-reveal class="group relative flex flex-col overflow-hidden rounded-3xl border border-slate-200 bg-white transition duration-500 hover:-translate-y-1 hover:shadow-2xl">
+            <div class="relative aspect-[16/10] w-full overflow-hidden bg-gradient-to-br from-slate-900 via-slate-800 to-brand-700">
+              <div class="absolute inset-0 [background-image:linear-gradient(to_right,rgba(255,255,255,.08)_1px,transparent_1px),linear-gradient(to_bottom,rgba(255,255,255,.08)_1px,transparent_1px)] [background-size:28px_28px]"></div>
+              <div class="absolute inset-0 flex items-center justify-center">
+                <div class="flex h-20 w-20 items-center justify-center rounded-2xl bg-white/10 ring-1 ring-white/20 backdrop-blur">
+                  <svg class="h-10 w-10 text-sun-400" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"/></svg>
+                </div>
+              </div>
+              <div class="absolute left-4 top-4 inline-flex items-center gap-1.5 rounded-full bg-white/90 px-3 py-1 text-[11px] font-bold text-ink shadow-sm ring-1 ring-slate-200 backdrop-blur">
+                <span class="h-1.5 w-1.5 rounded-full bg-emerald-500"></span>Shipped · Mar 2025
+              </div>
+            </div>
+            <div class="flex flex-1 flex-col p-6">
+              <p class="text-xs font-semibold uppercase tracking-[0.14em] text-brand-700">Client work · UI / UX</p>
+              <h4 class="mt-2 font-display text-lg font-bold text-ink">Upride — UI revamp</h4>
+              <p class="mt-3 text-sm leading-relaxed text-slate-600">UI revamp for Upride — hierarchy, navigation, component system and conversion surfaces. Proof that we ship experiences, not just features.</p>
+              <div class="mt-5 flex flex-wrap gap-1.5">
+                <span class="rounded-md bg-slate-100 px-2 py-1 text-[11px] font-semibold text-slate-700">Design System</span>
+                <span class="rounded-md bg-slate-100 px-2 py-1 text-[11px] font-semibold text-slate-700">Components</span>
+              </div>
+            </div>
+          </article>
+
+          <!-- CTA card -->
+          <article data-reveal class="group relative flex flex-col justify-between overflow-hidden rounded-3xl border border-dashed border-slate-300 bg-cream p-7 transition hover:border-brand-500 hover:bg-white">
+            <div>
+              <div class="inline-flex h-12 w-12 items-center justify-center rounded-xl bg-brand-50 text-brand-700">
+                <svg class="h-6 w-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 5v14M5 12h14"/></svg>
+              </div>
+              <h4 class="mt-5 font-display text-lg font-bold text-ink">Your project here.</h4>
+              <p class="mt-3 text-sm leading-relaxed text-slate-600">We're taking on 2 new builds this quarter. Tell us what you're trying to ship — we'll tell you honestly whether we can do it, and for how much.</p>
+            </div>
+            <a href="https://wa.me/918101652485?text=Hi%20Shape%20IT%2C%20I%27d%20like%20to%20discuss%20a%20project."
+               class="mt-6 inline-flex items-center gap-2 self-start rounded-full bg-brand-700 px-5 py-3 text-sm font-semibold text-white hover:bg-brand-800">
+              Start a conversation
+              <svg class="h-4 w-4 arrow-hop" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 5l7 7-7 7"/></svg>
+            </a>
+          </article>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ PROCESS ============ -->
+  <section id="process" class="relative overflow-hidden bg-[#FFF8F1] py-24">
+    <div aria-hidden="true" class="pointer-events-none absolute -top-16 left-1/2 h-64 w-[700px] -translate-x-1/2 rounded-full bg-brand-500/10 blur-3xl"></div>
+    <div class="relative mx-auto max-w-7xl px-5 lg:px-8">
+      <div data-reveal class="mx-auto max-w-2xl text-center">
+        <p class="text-xs font-semibold uppercase tracking-[0.22em] text-brand-700">How we work</p>
+        <h2 class="mt-3 font-display text-3xl font-bold tracking-tight text-ink sm:text-4xl lg:text-5xl">Small team. Clear process. No surprises.</h2>
+        <p class="mt-4 text-base leading-relaxed text-slate-600 sm:text-lg">Three steps from "hey, I have an idea" to "it's live in production."</p>
+      </div>
+
+      <ol class="mt-14 grid gap-6 md:grid-cols-3">
+        <li data-reveal class="relative rounded-3xl border border-slate-200 bg-white p-7">
+          <div class="flex items-center justify-between">
+            <span class="font-display text-xs font-bold tracking-[0.22em] text-sun-600">STEP&nbsp;01</span>
+            <span class="inline-flex h-9 w-9 items-center justify-center rounded-xl bg-brand-50 text-brand-700">
+              <svg class="h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2v10Z"/></svg>
+            </span>
+          </div>
+          <h3 class="mt-6 font-display text-xl font-bold text-ink">Few minutes call</h3>
+          <p class="mt-2 text-sm leading-relaxed text-slate-600">You talk directly to the person who'll build your project. No account manager, no sales script.</p>
+        </li>
+        <li data-reveal class="relative rounded-3xl border border-slate-200 bg-white p-7">
+          <div class="flex items-center justify-between">
+            <span class="font-display text-xs font-bold tracking-[0.22em] text-sun-600">STEP&nbsp;02</span>
+            <span class="inline-flex h-9 w-9 items-center justify-center rounded-xl bg-brand-50 text-brand-700">
+              <svg class="h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
+            </span>
+          </div>
+          <h3 class="mt-6 font-display text-xl font-bold text-ink">Scoped, fixed, shipped</h3>
+          <p class="mt-2 text-sm leading-relaxed text-slate-600">Clear scope, timeline and price — then weekly check-ins so you see progress, not promises.</p>
+        </li>
+        <li data-reveal class="relative rounded-3xl border border-slate-200 bg-white p-7">
+          <div class="flex items-center justify-between">
+            <span class="font-display text-xs font-bold tracking-[0.22em] text-sun-600">STEP&nbsp;03</span>
+            <span class="inline-flex h-9 w-9 items-center justify-center rounded-xl bg-brand-50 text-brand-700">
+              <svg class="h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2 3 7v6c0 5 4 9 9 9s9-4 9-9V7l-9-5Z"/></svg>
+            </span>
+          </div>
+          <h3 class="mt-6 font-display text-xl font-bold text-ink">Handover + support</h3>
+          <p class="mt-2 text-sm leading-relaxed text-slate-600">You own 100% of the code. Repositories, docs and deployments handed over. We stay on for support if you want.</p>
+        </li>
+      </ol>
+    </div>
+  </section>
+
+  <!-- ============ TESTIMONIALS ============ -->
+  <section id="testimonials" class="relative overflow-hidden bg-white py-24">
+    <div class="mx-auto max-w-7xl px-5 lg:px-8">
+      <div data-reveal class="mx-auto max-w-2xl text-center">
+        <p class="text-xs font-semibold uppercase tracking-[0.22em] text-brand-700">What clients say</p>
+        <h2 class="mt-3 font-display text-3xl font-bold tracking-tight text-ink sm:text-4xl lg:text-5xl">Trust, earned the hard way.</h2>
+      </div>
+
+      <div class="mt-14 grid gap-6 md:grid-cols-3">
+        <figure data-reveal class="group relative rounded-3xl border border-slate-200 bg-cream p-7 transition hover:-translate-y-1 hover:shadow-2xl">
+          <svg class="absolute right-6 top-6 h-10 w-10 text-brand-100" viewBox="0 0 24 24" fill="currentColor"><path d="M7.17 6C4.87 6 3 7.87 3 10.17v1.66C3 14.13 4.87 16 7.17 16h.66V12H6v-1.83C6 9.52 6.52 9 7.17 9h.66V6h-.66zm9 0c-2.3 0-4.17 1.87-4.17 4.17v1.66c0 2.3 1.87 4.17 4.17 4.17h.66V12H15v-1.83c0-.65.52-1.17 1.17-1.17h.66V6h-.66z"/></svg>
+          <div class="flex items-center gap-1 text-sun-500">
+            <svg class="h-4 w-4 fill-current" viewBox="0 0 24 24"><path d="M12 2l3 7 7 .5-5.5 4.5 2 7L12 17l-6.5 4 2-7L2 9.5 9 9z"/></svg>
+            <svg class="h-4 w-4 fill-current" viewBox="0 0 24 24"><path d="M12 2l3 7 7 .5-5.5 4.5 2 7L12 17l-6.5 4 2-7L2 9.5 9 9z"/></svg>
+            <svg class="h-4 w-4 fill-current" viewBox="0 0 24 24"><path d="M12 2l3 7 7 .5-5.5 4.5 2 7L12 17l-6.5 4 2-7L2 9.5 9 9z"/></svg>
+            <svg class="h-4 w-4 fill-current" viewBox="0 0 24 24"><path d="M12 2l3 7 7 .5-5.5 4.5 2 7L12 17l-6.5 4 2-7L2 9.5 9 9z"/></svg>
+            <svg class="h-4 w-4 fill-current" viewBox="0 0 24 24"><path d="M12 2l3 7 7 .5-5.5 4.5 2 7L12 17l-6.5 4 2-7L2 9.5 9 9z"/></svg>
+          </div>
+          <blockquote class="mt-4 text-[15px] leading-relaxed text-slate-700">"Shape IT perfectly captured our vision and turned it into a stunning, user-friendly website. Super impressed with their creativity and professionalism!"</blockquote>
+          <figcaption class="mt-6 flex items-center gap-3 border-t border-slate-200 pt-5">
+            <div class="flex h-11 w-11 items-center justify-center rounded-full bg-gradient-to-br from-brand-700 to-brand-500 font-display text-sm font-bold text-white">C4</div>
+            <div>
+              <p class="text-sm font-semibold text-ink">Connect4Collab</p>
+              <p class="text-xs text-slate-500">CEO &amp; Co-Founder · Ravangla, India</p>
+            </div>
+          </figcaption>
+        </figure>
+
+        <figure data-reveal class="group relative rounded-3xl border border-slate-200 bg-cream p-7 transition hover:-translate-y-1 hover:shadow-2xl">
+          <svg class="absolute right-6 top-6 h-10 w-10 text-sun-200" viewBox="0 0 24 24" fill="currentColor"><path d="M7.17 6C4.87 6 3 7.87 3 10.17v1.66C3 14.13 4.87 16 7.17 16h.66V12H6v-1.83C6 9.52 6.52 9 7.17 9h.66V6h-.66zm9 0c-2.3 0-4.17 1.87-4.17 4.17v1.66c0 2.3 1.87 4.17 4.17 4.17h.66V12H15v-1.83c0-.65.52-1.17 1.17-1.17h.66V6h-.66z"/></svg>
+          <div class="flex items-center gap-1 text-sun-500">
+            <svg class="h-4 w-4 fill-current" viewBox="0 0 24 24"><path d="M12 2l3 7 7 .5-5.5 4.5 2 7L12 17l-6.5 4 2-7L2 9.5 9 9z"/></svg>
+            <svg class="h-4 w-4 fill-current" viewBox="0 0 24 24"><path d="M12 2l3 7 7 .5-5.5 4.5 2 7L12 17l-6.5 4 2-7L2 9.5 9 9z"/></svg>
+            <svg class="h-4 w-4 fill-current" viewBox="0 0 24 24"><path d="M12 2l3 7 7 .5-5.5 4.5 2 7L12 17l-6.5 4 2-7L2 9.5 9 9z"/></svg>
+            <svg class="h-4 w-4 fill-current" viewBox="0 0 24 24"><path d="M12 2l3 7 7 .5-5.5 4.5 2 7L12 17l-6.5 4 2-7L2 9.5 9 9z"/></svg>
+            <svg class="h-4 w-4 fill-current" viewBox="0 0 24 24"><path d="M12 2l3 7 7 .5-5.5 4.5 2 7L12 17l-6.5 4 2-7L2 9.5 9 9z"/></svg>
+          </div>
+          <blockquote class="mt-4 text-[15px] leading-relaxed text-slate-700">"Impressive UI and timely delivery!"</blockquote>
+          <p class="mt-2 text-xs text-slate-500">Short, sweet, and shipped on time — exactly what we aim for.</p>
+          <figcaption class="mt-6 flex items-center gap-3 border-t border-slate-200 pt-5">
+            <div class="flex h-11 w-11 items-center justify-center rounded-full bg-gradient-to-br from-sun-500 to-orange-500 font-display text-sm font-bold text-white">D</div>
+            <div>
+              <p class="text-sm font-semibold text-ink">Detan</p>
+              <p class="text-xs text-slate-500">Director of Operations · Madhya Pradesh, India</p>
+            </div>
+          </figcaption>
+        </figure>
+
+        <figure data-reveal class="group relative rounded-3xl border border-slate-200 bg-cream p-7 transition hover:-translate-y-1 hover:shadow-2xl">
+          <svg class="absolute right-6 top-6 h-10 w-10 text-emerald-100" viewBox="0 0 24 24" fill="currentColor"><path d="M7.17 6C4.87 6 3 7.87 3 10.17v1.66C3 14.13 4.87 16 7.17 16h.66V12H6v-1.83C6 9.52 6.52 9 7.17 9h.66V6h-.66zm9 0c-2.3 0-4.17 1.87-4.17 4.17v1.66c0 2.3 1.87 4.17 4.17 4.17h.66V12H15v-1.83c0-.65.52-1.17 1.17-1.17h.66V6h-.66z"/></svg>
+          <div class="flex items-center gap-1 text-sun-500">
+            <svg class="h-4 w-4 fill-current" viewBox="0 0 24 24"><path d="M12 2l3 7 7 .5-5.5 4.5 2 7L12 17l-6.5 4 2-7L2 9.5 9 9z"/></svg>
+            <svg class="h-4 w-4 fill-current" viewBox="0 0 24 24"><path d="M12 2l3 7 7 .5-5.5 4.5 2 7L12 17l-6.5 4 2-7L2 9.5 9 9z"/></svg>
+            <svg class="h-4 w-4 fill-current" viewBox="0 0 24 24"><path d="M12 2l3 7 7 .5-5.5 4.5 2 7L12 17l-6.5 4 2-7L2 9.5 9 9z"/></svg>
+            <svg class="h-4 w-4 fill-current" viewBox="0 0 24 24"><path d="M12 2l3 7 7 .5-5.5 4.5 2 7L12 17l-6.5 4 2-7L2 9.5 9 9z"/></svg>
+            <svg class="h-4 w-4 fill-current" viewBox="0 0 24 24"><path d="M12 2l3 7 7 .5-5.5 4.5 2 7L12 17l-6.5 4 2-7L2 9.5 9 9z"/></svg>
+          </div>
+          <blockquote class="mt-4 text-[15px] leading-relaxed text-slate-700">"The team perfectly captured our requirements for a local DBMS. Impressed with the efficiency of the team!"</blockquote>
+          <figcaption class="mt-6 flex items-center gap-3 border-t border-slate-200 pt-5">
+            <div class="flex h-11 w-11 items-center justify-center rounded-full bg-gradient-to-br from-emerald-600 to-teal-500 font-display text-sm font-bold text-white">PP</div>
+            <div>
+              <p class="text-sm font-semibold text-ink">Pramod Pradhan</p>
+              <p class="text-xs text-slate-500">Sikkim, India</p>
+            </div>
+          </figcaption>
+        </figure>
+      </div>
+
+      <div data-reveal class="mt-10 text-center">
+        <a href="https://www.shapeit.in/testimonials" target="_blank" rel="noopener" class="inline-flex items-center gap-2 text-sm font-semibold text-brand-700 hover:text-brand-800">
+          See all testimonials
+          <svg class="h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 7h10v10"/><path d="M7 17 17 7"/></svg>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ CONTACT / FINAL CTA ============ -->
+  <section id="contact" class="relative overflow-hidden bg-ink py-24">
+    <div aria-hidden="true" class="pointer-events-none absolute -top-20 left-1/2 h-[420px] w-[900px] -translate-x-1/2 rounded-full bg-brand-500/30 blur-3xl"></div>
+    <div aria-hidden="true" class="pointer-events-none absolute -bottom-20 right-0 h-[320px] w-[320px] rounded-full bg-sun-500/20 blur-3xl"></div>
+    <div class="grid-bg absolute inset-0 opacity-20"></div>
+
+    <div class="relative mx-auto max-w-6xl px-5 lg:px-8">
+      <div class="text-center">
+        <div class="mx-auto flex max-w-fit items-center gap-2 rounded-full border border-white/10 bg-white/5 px-3 py-1 text-[11px] font-bold uppercase tracking-widest text-sun-400">
+          <span class="relative inline-flex h-2 w-2"><span class="pulse-dot absolute inline-flex h-full w-full rounded-full bg-sun-400 text-sun-400"></span><span class="relative inline-flex h-2 w-2 rounded-full bg-sun-400"></span></span>
+          Accepting 2 new projects · Q2 2026
+        </div>
+        <h2 data-reveal class="mt-6 font-display text-3xl font-bold tracking-tight text-white sm:text-4xl lg:text-6xl">
+          Have a project? <span class="sheen-text">Let's build it.</span>
+        </h2>
+        <p data-reveal class="mx-auto mt-5 max-w-2xl text-base leading-relaxed text-slate-300 sm:text-lg">
+          The fastest way to get a real answer is WhatsApp or a direct call. You'll talk to the engineer, not a sales rep — and we'll tell you honestly whether we're the right fit.
+        </p>
+
+        <div data-reveal class="mt-10 flex flex-col items-center justify-center gap-3 sm:flex-row sm:gap-4">
+          <a href="https://wa.me/918101652485?text=Hi%20Shape%20IT%2C%20I%27d%20like%20to%20discuss%20a%20project."
+             class="group inline-flex items-center justify-center gap-2 rounded-full bg-sun-500 px-7 py-4 text-sm font-bold text-ink shadow-lg shadow-sun-500/30 transition hover:bg-sun-400 sm:text-base">
+            <svg class="h-5 w-5" viewBox="0 0 24 24" fill="currentColor"><path d="M20.52 3.48A11.8 11.8 0 0 0 12.06 0C5.5 0 .17 5.33.17 11.9a11.87 11.87 0 0 0 1.6 5.94L0 24l6.3-1.65a11.86 11.86 0 0 0 5.76 1.47h.01c6.56 0 11.89-5.33 11.89-11.9a11.8 11.8 0 0 0-3.44-8.44zM12.07 21.6a9.7 9.7 0 0 1-4.96-1.36l-.36-.21-3.74.98 1-3.64-.23-.37a9.73 9.73 0 0 1-1.5-5.2c0-5.38 4.38-9.76 9.78-9.76 2.61 0 5.07 1.02 6.91 2.86a9.69 9.69 0 0 1 2.87 6.91c-.01 5.38-4.39 9.79-9.77 9.79zm5.36-7.3c-.3-.15-1.74-.86-2-.96s-.47-.15-.66.15-.76.95-.93 1.15-.34.22-.63.07a7.96 7.96 0 0 1-3.98-3.48c-.3-.52.3-.48.86-1.59.1-.22.05-.4-.03-.55l-.92-2.22c-.24-.57-.49-.5-.67-.5h-.57c-.2 0-.52.07-.8.37s-1.06 1.03-1.06 2.52 1.09 2.93 1.24 3.13c.15.2 2.13 3.25 5.17 4.56.72.31 1.29.5 1.73.65.73.23 1.39.2 1.91.12.58-.09 1.74-.71 1.99-1.4.25-.69.25-1.28.17-1.4-.07-.12-.26-.2-.55-.34z"/></svg>
+            WhatsApp now
+            <svg class="h-4 w-4 arrow-hop" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M5 12h14M13 5l7 7-7 7"/></svg>
+          </a>
+          <a href="tel:+918101652485" class="inline-flex items-center justify-center gap-2 rounded-full border border-white/20 bg-white/5 px-7 py-4 text-sm font-semibold text-white transition hover:bg-white/10 sm:text-base">
+            <svg class="h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6A19.79 19.79 0 0 1 2.12 4.18 2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.12.96.34 1.9.66 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.23a2 2 0 0 1 2.11-.45c.91.32 1.85.54 2.81.66A2 2 0 0 1 22 16.92z"/></svg>
+            Call +91 81016 52485
+          </a>
+          <a href="mailto:shapeit.india@gmail.com" class="inline-flex items-center justify-center gap-2 rounded-full border border-white/20 bg-transparent px-7 py-4 text-sm font-semibold text-white transition hover:bg-white/10 sm:text-base">
+            <svg class="h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+            Email us
+          </a>
+        </div>
+      </div>
+
+      <!-- Meta grid -->
+      <div class="mt-16 grid gap-5 sm:grid-cols-3">
+        <div data-reveal class="rounded-3xl border border-white/10 bg-white/5 p-6 backdrop-blur">
+          <div class="flex h-10 w-10 items-center justify-center rounded-xl bg-white/10 text-sun-400">
+            <svg class="h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s-8-7.58-8-13a8 8 0 0 1 16 0c0 5.42-8 13-8 13z"/><circle cx="12" cy="9" r="3"/></svg>
+          </div>
+          <h4 class="mt-4 font-display text-xs font-bold uppercase tracking-[0.18em] text-white">Visit us</h4>
+          <p class="mt-2 text-sm leading-relaxed text-slate-300">Samdong Kambal,<br/>Gangtok, Sikkim · India</p>
+        </div>
+        <div data-reveal class="rounded-3xl border border-white/10 bg-white/5 p-6 backdrop-blur">
+          <div class="flex h-10 w-10 items-center justify-center rounded-xl bg-white/10 text-sun-400">
+            <svg class="h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+          </div>
+          <h4 class="mt-4 font-display text-xs font-bold uppercase tracking-[0.18em] text-white">Operating hours</h4>
+          <p class="mt-2 text-sm leading-relaxed text-slate-300">Mon–Fri · 9 AM – 6 PM IST<br/>Sat · 10 AM – 4 PM IST<br/><span class="text-slate-400">Sun · Closed</span></p>
+        </div>
+        <div data-reveal class="rounded-3xl border border-white/10 bg-white/5 p-6 backdrop-blur">
+          <div class="flex h-10 w-10 items-center justify-center rounded-xl bg-white/10 text-sun-400">
+            <svg class="h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+          </div>
+          <h4 class="mt-4 font-display text-xs font-bold uppercase tracking-[0.18em] text-white">Direct line</h4>
+          <p class="mt-2 text-sm leading-relaxed text-slate-300">
+            <a href="tel:+918101652485" class="hover:text-white">+91 81016 52485</a><br/>
+            <a href="mailto:shapeit.india@gmail.com" class="hover:text-white">shapeit.india@gmail.com</a>
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<!-- ============ FOOTER ============ -->
+<footer class="border-t border-slate-200 bg-cream">
+  <div class="mx-auto flex max-w-7xl flex-col items-center justify-between gap-4 px-5 py-8 text-sm text-slate-600 sm:flex-row lg:px-8">
+    <div class="flex items-center gap-3">
+      <img src="logo.png" alt="Shape IT" class="h-8 w-auto rounded-md" />
+      <span class="text-slate-400">·</span>
+      <span class="text-slate-500">Actively shaping the future with IT.</span>
+    </div>
+    <div class="text-xs text-slate-500">© <span id="year"></span> Shape IT · Designed &amp; engineered in Gangtok, India.</div>
+  </div>
+</footer>
+
+<!-- Floating WhatsApp -->
+<a href="https://wa.me/918101652485?text=Hi%20Shape%20IT%2C%20I%27d%20like%20to%20discuss%20a%20project."
+   class="group fixed bottom-5 right-5 z-40 inline-flex items-center gap-2 rounded-full bg-emerald-500 px-5 py-3 text-sm font-bold text-white shadow-2xl shadow-emerald-500/40 transition hover:bg-emerald-600"
+   aria-label="Chat on WhatsApp">
+  <svg class="h-5 w-5" viewBox="0 0 24 24" fill="currentColor"><path d="M20.52 3.48A11.8 11.8 0 0 0 12.06 0C5.5 0 .17 5.33.17 11.9a11.87 11.87 0 0 0 1.6 5.94L0 24l6.3-1.65a11.86 11.86 0 0 0 5.76 1.47h.01c6.56 0 11.89-5.33 11.89-11.9a11.8 11.8 0 0 0-3.44-8.44zM12.07 21.6a9.7 9.7 0 0 1-4.96-1.36l-.36-.21-3.74.98 1-3.64-.23-.37a9.73 9.73 0 0 1-1.5-5.2c0-5.38 4.38-9.76 9.78-9.76 2.61 0 5.07 1.02 6.91 2.86a9.69 9.69 0 0 1 2.87 6.91c-.01 5.38-4.39 9.79-9.77 9.79z"/></svg>
+  <span class="hidden sm:inline">Chat on WhatsApp</span>
+</a>
+
+<script>
+  // Mobile menu
+  document.getElementById('burger')?.addEventListener('click', () => {
+    document.getElementById('mobile')?.classList.toggle('hidden');
+  });
+
+  // Year
+  document.getElementById('year').textContent = new Date().getFullYear();
+
+  // Reveal on scroll
+  const io = new IntersectionObserver((entries) => {
+    entries.forEach((e) => {
+      if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); }
+    });
+  }, { threshold: 0.12 });
+  document.querySelectorAll('[data-reveal]').forEach((el) => io.observe(el));
+
+  // Smooth scroll for internal anchors (close mobile menu on click)
+  document.querySelectorAll('#mobile a[href^="#"]').forEach(a => {
+    a.addEventListener('click', () => document.getElementById('mobile').classList.add('hidden'));
+  });
+
+  // HMS gallery thumbnail swap
+  (function() {
+    const main = document.getElementById('hmsMain');
+    if (!main) return;
+    const thumbs = document.querySelectorAll('.hms-thumb');
+    thumbs.forEach(t => {
+      t.addEventListener('click', () => {
+        main.src = t.dataset.thumb;
+        thumbs.forEach(x => { x.classList.remove('ring-brand-600'); x.classList.add('ring-transparent'); });
+        t.classList.remove('ring-transparent');
+        t.classList.add('ring-brand-600');
+      });
+    });
+  })();
+</script>
+
+<!-- JSON-LD -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Organization",
+  "name": "Shape IT",
+  "url": "https://www.shapeit.in",
+  "logo": "https://www.shapeit.in/logo.png",
+  "description": "Engineering-led studio building production websites, mobile apps, AI integrations and growth systems.",
+  "address": {
+    "@type": "PostalAddress",
+    "streetAddress": "Samdong Kambal",
+    "addressLocality": "Gangtok",
+    "addressRegion": "Sikkim",
+    "addressCountry": "IN"
+  },
+  "contactPoint": [{
+    "@type": "ContactPoint",
+    "telephone": "+91-81016-52485",
+    "email": "shapeit.india@gmail.com",
+    "contactType": "sales",
+    "areaServed": ["IN","US","EU","AE"],
+    "availableLanguage": ["English","Hindi"]
+  }],
+  "sameAs": ["https://www.shapeit.in"]
+}
+</script>
+
+</body>
+</html>

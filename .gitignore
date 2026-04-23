@@ -1,0 +1,10 @@
+ShapeIT.md
+screenshots_of_the_hms_physiotherapy/
+.claude/
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db
+node_modules/
+.env
+.env.local
