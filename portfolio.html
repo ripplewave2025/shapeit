@@ -1,0 +1,197 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Shape IT Portfolio | Selected builds and case studies</title>
+  <meta name="description" content="See Shape IT's portfolio across healthcare systems, marketplaces, AI chatbots, travel platforms, and mobile apps.">
+  <meta name="theme-color" content="#0b1424">
+  <link rel="icon" href="logo.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Gabarito:wght@400;500;700;800&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="site.css">
+</head>
+<body data-page="portfolio">
+  <header class="site-header">
+    <div class="shell nav-shell">
+      <a class="brand" href="index.html"><span>Shape</span><strong>IT</strong></a>
+      <nav class="desktop-nav" aria-label="Primary">
+        <a href="services.html" data-nav="services">Services</a>
+        <a href="portfolio.html" data-nav="portfolio">Portfolio</a>
+        <a href="about.html" data-nav="about">About</a>
+        <a href="testimonials.html" data-nav="testimonials">Testimonials</a>
+        <a href="contact.html" data-nav="contact">Contact</a>
+      </nav>
+      <div class="desktop-actions">
+        <a class="nav-call" href="tel:+918101652485">+91 81016 52485</a>
+        <a class="button button-primary" href="https://wa.me/918101652485?text=Hi%20Shape%20IT%2C%20I%27d%20like%20to%20discuss%20a%20project.">Start a project</a>
+      </div>
+      <button class="menu-toggle" type="button" aria-label="Open menu" aria-expanded="false" aria-controls="mobile-menu" data-menu-toggle>
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+    </div>
+    <div class="mobile-panel" id="mobile-menu" data-menu hidden>
+      <button class=\"menu-close\" type=\"button\" aria-label=\"Close menu\" onclick=\"this.closest('[data-menu]').setAttribute('hidden','');document.querySelector('[data-menu-toggle]').setAttribute('aria-expanded','false');document.body.style.overflow='';\"><span></span><span></span></button>
+      <div class="mobile-inner">
+        <nav class="mobile-links" aria-label="Mobile">
+          <a href="services.html" data-nav="services">Services</a>
+          <a href="portfolio.html" data-nav="portfolio">Portfolio</a>
+          <a href="about.html" data-nav="about">About</a>
+          <a href="testimonials.html" data-nav="testimonials">Testimonials</a>
+          <a href="contact.html" data-nav="contact">Contact</a>
+        </nav>
+        <div class="mobile-actions">
+          <a class="button button-primary" href="https://wa.me/918101652485?text=Hi%20Shape%20IT%2C%20I%27d%20like%20to%20discuss%20a%20project.">WhatsApp us</a>
+          <a class="button button-secondary" href="tel:+918101652485">Call directly</a>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <section class="page-hero">
+      <div class="shell page-hero-shell">
+        <span class="eyebrow">Portfolio</span>
+        <h1>Proof first. Real systems before promises.</h1>
+        <p>
+          This page separates the work from the main landing page so leads can review what Shape IT has actually built without having to scan one long homepage.
+        </p>
+      </div>
+    </section>
+
+    <section class="section section-soft" id="hms-case">
+      <div class="shell feature-grid">
+        <article class="media-panel reveal">
+          <div class="media-frame">
+            <img id="portfolio-hms-main" src="screenshots_of_the_hms_physiotherapy/image1.png" alt="Physiotherapy HMS dashboard screenshot">
+          </div>
+          <div class="media-caption">
+            <span>Locally hosted healthcare system</span>
+            <span>4 screenshots</span>
+          </div>
+          <div class="thumb-row">
+            <button class="is-active" type="button" data-gallery-target="portfolio-hms-main" data-gallery-image="screenshots_of_the_hms_physiotherapy/image1.png" data-gallery-alt="Physiotherapy HMS dashboard screenshot">
+              <img src="screenshots_of_the_hms_physiotherapy/image1.png" alt="Dashboard thumbnail">
+            </button>
+            <button type="button" data-gallery-target="portfolio-hms-main" data-gallery-image="screenshots_of_the_hms_physiotherapy/image2.png" data-gallery-alt="Physiotherapy HMS patient records">
+              <img src="screenshots_of_the_hms_physiotherapy/image2.png" alt="Records thumbnail">
+            </button>
+            <button type="button" data-gallery-target="portfolio-hms-main" data-gallery-image="screenshots_of_the_hms_physiotherapy/image3.png" data-gallery-alt="Physiotherapy HMS workflow view">
+              <img src="screenshots_of_the_hms_physiotherapy/image3.png" alt="Workflow thumbnail">
+            </button>
+            <button type="button" data-gallery-target="portfolio-hms-main" data-gallery-image="screenshots_of_the_hms_physiotherapy/image4.png" data-gallery-alt="Physiotherapy HMS follow-up panel">
+              <img src="screenshots_of_the_hms_physiotherapy/image4.png" alt="Follow-up thumbnail">
+            </button>
+          </div>
+        </article>
+
+        <article class="feature-copy reveal">
+          <span class="meta-label">Featured case study</span>
+          <h2>Physiotherapy hospital management system.</h2>
+          <p>
+            Built for a physiotherapy department, this system organizes patient records, role-based access, follow-up tracking, and clinical workflow in one place.
+            It is the strongest proof asset in the repo because the screenshots show a real business-specific build.
+          </p>
+          <ul class="feature-list">
+            <li>Role-based interfaces for doctor, admin, and desk teams</li>
+            <li>Patient history and repeat-case tracking</li>
+            <li>Good candidate for clinics, hospital units, and service-heavy departments</li>
+          </ul>
+          <div class="stack">
+            <span>React</span>
+            <span>Django</span>
+            <span>PostgreSQL</span>
+          </div>
+          <div class="cta-row">
+            <a class="button button-primary" href="https://wa.me/918101652485?text=Hi%20Shape%20IT%2C%20I%27m%20interested%20in%20a%20system%20like%20your%20HMS.">Ask for a similar build</a>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="shell">
+        <div class="section-intro reveal">
+          <span class="case-kicker">Other builds</span>
+          <h2>Reference products already sitting in the workshop.</h2>
+          <p>These are useful because they show repeatable patterns Shape IT can adapt for new businesses without starting from zero every time.</p>
+        </div>
+
+        <div class="case-grid">
+          <article class="case-card case-wide card reveal">
+            <div class="case-body">
+              <span class="case-kicker">Marketplace</span>
+              <h3>LinkedIn-style skills marketplace</h3>
+              <p>Full-stack marketplace with authentication, profiles, listings, search, and an Android APK. Strong template for freelance, coaching, or services marketplaces.</p>
+              <div class="stack">
+                <span>React</span>
+                <span>Django</span>
+                <span>Android APK</span>
+              </div>
+            </div>
+          </article>
+          <article class="case-card case-wide card reveal">
+            <div class="case-body">
+              <span class="case-kicker">AI support</span>
+              <h3>PG accommodation chatbot</h3>
+              <p>RAG chatbot trained on FAQs, pricing, room details, and rules. Reusable for hotels, clinics, schools, and support-heavy local businesses.</p>
+              <div class="stack">
+                <span>LLM</span>
+                <span>RAG</span>
+                <span>Python</span>
+              </div>
+            </div>
+          </article>
+          <article class="case-card card reveal">
+            <div class="case-body">
+              <span class="case-kicker">Travel</span>
+              <h3>Travel booking platform</h3>
+              <p>Aggregator-style product for itinerary discovery, vendor onboarding, bookings, and payments.</p>
+            </div>
+          </article>
+          <article class="case-card card reveal">
+            <div class="case-body">
+              <span class="case-kicker">Mobile apps</span>
+              <h3>Homestay, survey, and mental health apps</h3>
+              <p>Three mobile reference builds designed to help close leads and demonstrate product capability across different categories.</p>
+            </div>
+          </article>
+          <article class="case-card card reveal">
+            <div class="case-body">
+              <span class="case-kicker">Design work</span>
+              <h3>Upride UI revamp</h3>
+              <p>UI and UX revamp work focused on clearer hierarchy, navigation, and product surface quality.</p>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="shell footer-shell">
+      <div>
+        <a class="brand" href="index.html"><span>Shape</span><strong>IT</strong></a>
+        <p>Software development, AI integration, and growth support for businesses in India and beyond.</p>
+      </div>
+      <div class="footer-links">
+        <a href="services.html">Services</a>
+        <a href="portfolio.html">Portfolio</a>
+        <a href="about.html">About</a>
+        <a href="testimonials.html">Testimonials</a>
+        <a href="contact.html">Contact</a>
+      </div>
+    </div>
+  </footer>
+
+  <a class="whatsapp-fab" href="https://wa.me/918101652485?text=Hi%20Shape%20IT%2C%20I%27d%20like%20to%20discuss%20a%20project." aria-label="Chat on WhatsApp">
+    <span>Chat</span>
+    <span>WhatsApp</span>
+  </a>
+
+  <script src="site.js"></script>
+</body>
+</html>
